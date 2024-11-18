@@ -45,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    //to identify the onne to one relationship between the user and profile 
+    //we firstly put the  fk in tables
+    //and now we put the function in the models this functins has been written inside the table 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }
