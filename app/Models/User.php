@@ -52,4 +52,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+
+    // one to many with tasks
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

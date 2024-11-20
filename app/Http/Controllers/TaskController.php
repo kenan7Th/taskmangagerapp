@@ -5,11 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+public function addCategoriesToTask(Request $request ,$taskId){
 
+    $task = Task::findOrFail($taskId);
+    $task->categories()->attach($request->category_id);
+    return response()->json('Category attached successful',200);
+}
+public function getTaskCategories($taskId){
+
+$categories = Task::findOrFail($taskId)->categories;
+return response()->json($categories,200);
+
+}
     public function index()
     {
         $tak=Task::all();
@@ -41,5 +53,10 @@ class TaskController extends Controller
        $mytask=  Task::find($id);
          return response()->json($mytask,200);
     }
+    
+//////get the user for a specific task
+public function getTaskUser($id){
+    $user= Task::find($id)->user;
+    return response()->json($user,200);}
     
 }

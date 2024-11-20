@@ -20,3 +20,12 @@ Route::get('/tasks/{id}', [TaskController::class, 'update']);
 Route::post('profile',[ProfileController::class,'store']);
 Route::get('profile/{id}',[ProfileController::class,'show']);
 Route::get('user/{id}/profile',[UserController::class,'getprofile'],);
+//get all the tasks ,which are belgongs to a scpecifc user
+Route::get('user/{id}/tasks',[UserController::class,'getUserTasks'],);
+
+//get the user for a specific taskk
+Route::get('task/{id}/user',[TaskController::class,'getTaskUser'],);
+
+//many to many
+Route::post('tasks/{tasksId}/categories',[TaskController::class,'addCategoriesToTask']);
+Route::get('tasks/{tasksId}/categories',[TaskController::class,'getTaskCategories']);
